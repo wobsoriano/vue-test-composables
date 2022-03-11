@@ -1,5 +1,5 @@
 {
-  "name": "vue-composable-testing",
+  "name": "vue-test-composables",
   "version": "0.1.0",
   "description": "Test composables in Vue 2 and 3.",
   "keywords": [
