@@ -1,4 +1,4 @@
-import { createApp, isVue2, Vue2, defineComponent, h } from "vue-demi"
+import { Vue2, createApp, defineComponent, h, isVue2 } from 'vue-demi'
 
 export interface MountResult<T> {
   result: T
@@ -22,7 +22,6 @@ function mountVue2<T>(
   composable: () => T,
   options: MountOptions,
 ): MountResult<T> {
-  // @ts-ignore
   const app = new Vue2({
     setup() {
       options.provider?.()
@@ -47,25 +46,26 @@ function mountVue3<T>(
   composable: () => T,
   options: MountOptions,
 ): MountResult<T> {
-  const App = defineComponent({
-    setup() {
-      options.provider?.()
-    },
-    render() {
-      return h(Child, { ref: "child" })
-    },
-  })
-
   const Child = defineComponent({
     setup() {
       const result = composable()
       const wrapper = () => result
       return { wrapper }
     },
+    // eslint-disable-next-line vue/require-render-return
     render() {},
   })
 
-  const root = document.createElement("div")
+  const App = defineComponent({
+    setup() {
+      options.provider?.()
+    },
+    render() {
+      return h(Child, { ref: 'child' })
+    },
+  })
+
+  const root = document.createElement('div')
   const app = createApp(App)
   const vm = app.mount(root)
 

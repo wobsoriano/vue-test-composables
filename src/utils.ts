@@ -1,4 +1,4 @@
-import { h as hDemi, isVue2 } from "vue-demi"
+import { h as hDemi, isVue2 } from 'vue-demi'
 
 interface Options {
   props?: Object

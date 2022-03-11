@@ -19,9 +19,12 @@
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
     "build": "pnpm run build-fast -- --dts-resolve",
+    "test": "pnpm run test:2 && pnpm run test:3",
     "test:2": "vue-demi-switch 2 vue2 && vitest run",
     "test:3": "vue-demi-switch 3 && vitest run",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.4.0",
@@ -58,7 +61,8 @@
     "extends": "@antfu"
   },
   "eslintIgnore": [
-    "dist"
+    "dist",
+    "node_modules"
   ],
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

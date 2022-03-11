@@ -1,8 +1,8 @@
-import { renderComposable } from "../src"
-import { useCounter } from "./useCounter"
-import { test, expect } from "vitest"
+import { expect, test } from 'vitest'
+import { renderComposable } from '../src'
+import { useCounter } from './useCounter'
 
-test("should increment count", () => {
+test('should increment count', () => {
   const { result } = renderComposable(() => useCounter())
 
   expect(result.count.value).toBe(0)
