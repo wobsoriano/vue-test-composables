@@ -2,17 +2,13 @@
 
 Test composables in Vue 2 and 3.
 
-## Quick start
-
-Install:
+## Installation:
 
 ```bash
-pnpm add vue-composition-test-utils -D
+pnpm add vue-test-composables -D
 ```
 
 If your app is using Vue 2, you also need to install the composition api: `@vue/composition-api`.
-
-Example:
 
 ### Basic usage
 
@@ -49,3 +45,4 @@ test('should increment count', () => {
   expect(result.count.value).toBe(1)
 })
 ```
+
