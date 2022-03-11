@@ -1,3 +1,4 @@
+/* eslint-disable vue/one-component-per-file */
 import { Vue2, createApp, defineComponent, h, isVue2 } from 'vue-demi'
 
 export interface MountResult<T> {
