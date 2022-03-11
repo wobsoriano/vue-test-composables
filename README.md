@@ -58,7 +58,7 @@ unmount()
 ### Provide/Inject
 
 ```ts
-import { mount } from 'vue-test-composables'
+import { renderComposable } from 'vue-test-composables'
 import { computed, inject, provide } from 'vue'
 
 function useCounter() {
@@ -71,7 +71,7 @@ function useCounter() {
 }
 
 test('should be injected', () => {
-  const { result } = mount(() => useCounter(), {
+  const { result } = renderComposable(() => useCounter(), {
     provider: () => {
       provide('store', {
         count: 10,
