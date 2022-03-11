@@ -1,24 +1,52 @@
-import { expect, test } from 'vitest'
-import { ref } from 'vue-demi'
+import { describe, expect, it, vi } from 'vitest'
+import { inject, onMounted, onUnmounted, provide, ref } from 'vue-demi'
 import { renderComposable } from '../src'
 
-function useCounter() {
-  const count = ref(0)
+describe('renderComposable', () => {
+  it('returns the result of passed composable', () => {
+    function useTest() {
+      const test = ref('value')
+      return {
+        test,
+      }
+    }
+    const { result } = renderComposable(() => useTest())
+    expect(result.test.value).toBe('value')
+  })
 
-  function increment() {
-    count.value++
-  }
+  it('mounts the underlying component', () => {
+    const spy = vi.fn()
+    function useTest() {
+      onMounted(spy)
+    }
+    renderComposable(() => useTest())
+    expect(spy).toHaveBeenCalled()
+  })
 
-  return {
-    count,
-    increment,
-  }
-}
+  it('allows to unmount the underlying component', () => {
+    const spy = vi.fn()
+    function useTest() {
+      onUnmounted(spy)
+    }
+    const { unmount } = renderComposable(() => useTest())
+    expect(spy).not.toHaveBeenCalled()
+    unmount()
+    expect(spy).toHaveBeenCalled()
+  })
 
-test('should increment count', () => {
-  const { result } = renderComposable(() => useCounter())
+  it('allows to provide a value', () => {
+    function useTest() {
+      const injected = inject('test')
+      return {
+        injected,
+      }
+    }
 
-  expect(result.count.value).toBe(0)
-  result.increment()
-  expect(result.count.value).toBe(1)
+    const { result } = renderComposable(() => useTest(), {
+      provider: () => {
+        provide('test', 'value')
+      },
+    })
+    expect(result.injected).toBe('value')
+  })
 })
