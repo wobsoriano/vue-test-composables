@@ -1,6 +1,19 @@
 import { expect, test } from 'vitest'
+import { ref } from 'vue-demi'
 import { renderComposable } from '../src'
-import { useCounter } from './useCounter'
+
+function useCounter() {
+  const count = ref(0)
+
+  function increment() {
+    count.value++
+  }
+
+  return {
+    count,
+    increment,
+  }
+}
 
 test('should increment count', () => {
   const { result } = renderComposable(() => useCounter())
