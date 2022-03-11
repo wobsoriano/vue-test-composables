@@ -1,7 +1,13 @@
 {
-  "name": "my-ts-lib",
+  "name": "vue-composable-testing",
   "version": "0.1.0",
-  "description": "My awesome typescript library",
+  "description": "Test composables in Vue 2 and 3.",
+  "keywords": [
+    "vue",
+    "composition api",
+    "composable",
+    "testing"
+  ],
   "publishConfig": {
     "access": "public"
   },
