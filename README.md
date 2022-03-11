@@ -46,3 +46,46 @@ test('should increment count', () => {
 })
 ```
 
+You can unmount the underlying component by using unmount helper returned by mount to trigger onUnmounted and related lifecycle hooks:
+
+```ts
+const { result, unmount } = renderComposable(() => useCounter())
+
+// Unmount underlying comonent to trigger lifecycle hooks
+unmount()
+```
+
+### Provide/Inject
+
+```ts
+import { mount } from 'vue-test-composables'
+import { computed, inject, provide } from 'vue'
+
+function useCounter() {
+  const store = inject('store')
+  const count = computed(() => store.count)
+
+  return {
+    count,
+  }
+}
+
+test('should be injected', () => {
+  const { result } = mount(() => useCounter(), {
+    provider: () => {
+      provide('store', {
+        count: 10,
+      })
+    },
+  })
+  expect(result.count.value).toBe(10)
+})
+```
+
+## Credits
+
+This is a fork of [vue-composable-tester](https://github.com/ktsn/vue-composable-tester) with some modifications using [vue-demi](https://github.com/vueuse/vue-demi/).
+
+## License
+
+MIT
