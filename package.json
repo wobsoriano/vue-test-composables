@@ -8,10 +8,11 @@
     "composable",
     "testing"
   ],
+  "license": "MIT",
+  "author": "Robert Soriano <sorianorobertc@gmail.com>",
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
