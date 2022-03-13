@@ -64,7 +64,7 @@ import { useQuery, useQueryProvider } from 'vue-query'
 import { renderComposable } from 'vue-test-composables'
 import waitFor from 'p-wait-for'
 
-function useTodo() {
+function useUser() {
   return useQuery('user', () =>
     fetch('/api/user').then(
       res => res.json,
@@ -72,8 +72,8 @@ function useTodo() {
   )
 }
 
-test('useTodo', async() => {
-  const { result } = renderComposable(() => useTodo(), {
+test('useUser', async() => {
+  const { result } = renderComposable(() => useUser(), {
     provider() {
       useQueryProvider()
     },
