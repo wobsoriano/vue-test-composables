@@ -57,28 +57,35 @@ unmount()
 
 ### Provide/Inject
 
+Example using [vue-query](https://github.com/DamianOsipiuk/vue-query)
+
 ```ts
+import { useQuery, useQueryProvider } from 'vue-query'
 import { renderComposable } from 'vue-test-composables'
-import { computed, inject, provide } from 'vue'
+import waitFor from 'p-wait-for'
 
-function useCounter() {
-  const store = inject('store')
-  const count = computed(() => store.count)
-
-  return {
-    count,
-  }
+function useTodo() {
+  return useQuery('user', () =>
+    fetch('/api/user').then(
+      res => res.json,
+    ),
+  )
 }
 
-test('should be injected', () => {
-  const { result } = renderComposable(() => useCounter(), {
-    provider: () => {
-      provide('store', {
-        count: 10,
-      })
+test('useTodo', async() => {
+  const { result } = renderComposable(() => useTodo(), {
+    provider() {
+      useQueryProvider()
     },
   })
-  expect(result.count.value).toBe(10)
+
+  await waitFor(() => result.isSuccess.value)
+
+  await expect(result.data.value).resolves.toMatchObject({
+    id: 1,
+    username: 'johndoe',
+    email: 'johndoe@mail.com',
+  })
 })
 ```
 
