@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import { inject, onMounted, onUnmounted, provide, ref } from 'vue-demi'
-import { renderComposable } from '../src'
+import { renderComposable } from '..'
 
 describe('renderComposable', () => {
   it('returns the result of passed composable', () => {
