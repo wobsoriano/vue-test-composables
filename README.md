@@ -62,7 +62,6 @@ Example using [vue-query](https://github.com/DamianOsipiuk/vue-query)
 ```ts
 import { useQuery, useQueryProvider } from 'vue-query'
 import { renderComposable } from 'vue-test-composables'
-import waitFor from 'p-wait-for'
 
 function useUser() {
   return useQuery('user', () =>
@@ -73,7 +72,7 @@ function useUser() {
 }
 
 test('useUser', async() => {
-  const { result } = renderComposable(() => useUser(), {
+  const { result, waitFor } = renderComposable(() => useUser(), {
     provider() {
       useQueryProvider()
     },
