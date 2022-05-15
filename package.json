@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build-fast": "tsup src/index.ts --format cjs,esm",
-    "build": "pnpm run build-fast -- --dts-resolve",
+    "build": "pnpm run build-fast --dts-resolve",
     "test": "pnpm run test:2 && pnpm run test:3",
     "test:2": "vue-demi-switch 2 vue2 && vitest run",
     "test:3": "vue-demi-switch 3 && vitest run",
