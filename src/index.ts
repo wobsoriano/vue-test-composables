@@ -1,9 +1,11 @@
 /* eslint-disable vue/one-component-per-file */
 import { Vue2, createApp, defineComponent, h, isVue2 } from 'vue-demi'
+import waitFor from 'p-wait-for'
 
 export interface MountResult<T> {
   result: T
   unmount: () => void
+  waitFor: typeof waitFor
 }
 
 export interface MountOptions {
@@ -40,6 +42,7 @@ function mountVue2<T>(
   return {
     result: app.wrapper(),
     unmount: () => app.$destroy(),
+    waitFor,
   }
 }
 
@@ -73,5 +76,6 @@ function mountVue3<T>(
   return {
     result: (vm.$refs.child as any).wrapper(),
     unmount: () => app.unmount(),
+    waitFor,
   }
 }

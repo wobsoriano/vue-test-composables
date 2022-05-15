@@ -44,6 +44,7 @@
     }
   },
   "dependencies": {
+    "p-wait-for": "^4.1.0",
     "vue-demi": "^0.12.1"
   },
   "devDependencies": {
