@@ -1,5 +1,8 @@
 # vue-test-composables
 
+[![Build Size](https://img.shields.io/bundlephobia/minzip/vue-test-composables?label=bundle%20size&style=flat&colorA=000000&colorB=000000)](https://bundlephobia.com/result?p=vue-test-composables)
+[![Version](https://img.shields.io/npm/v/vue-test-composables?style=flat&colorA=000000&colorB=000000)](https://www.npmjs.com/package/vue-test-composables)
+
 Test composables in Vue 2 and 3.
 
 ## Installation:
