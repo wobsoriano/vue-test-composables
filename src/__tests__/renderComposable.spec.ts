@@ -1,3 +1,7 @@
+/**
+ * @vitest-environment happy-dom
+ */
+
 import { describe, expect, it, vi } from 'vitest'
 import { inject, onMounted, onUnmounted, provide, ref } from 'vue-demi'
 import { renderComposable } from '..'
