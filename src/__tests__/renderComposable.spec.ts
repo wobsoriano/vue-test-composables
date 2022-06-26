@@ -27,7 +27,7 @@ describe('renderComposable', () => {
     expect(spy).toHaveBeenCalled()
   })
 
-  it('allows to unmount the underlying component', () => {
+  it('unmounts the underlying component', () => {
     const spy = vi.fn()
     function useTest() {
       onUnmounted(spy)
